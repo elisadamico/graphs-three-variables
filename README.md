@@ -6,18 +6,15 @@ Practice for the POL10170 guest lecture on graphs for three or more variables (U
 
 The slides from the lecture are in [lecture_slides.pdf](lecture_slides.pdf).
 
-## The data
+## What's here
 
-`data/pooled_effects.csv` has 8 rows. Each one is the average change in wheat-flour prices after a disaster, in drier or wetter regions.
+| Chart | Data | Make it in |
+|---|---|---|
+| 1. Disasters and food prices, drier vs. wetter regions | `data/pooled_effects.csv` | Excel or R |
+| 2. Floods per year, coloured by El Niño phase | `data/floods_by_year.csv` | Excel |
+| 3. Floods vs. El Niño strength, with a fitted line | `data/floods_by_year.csv` | Excel |
 
-| Variable | What it is |
-|---|---|
-| `disaster` | Flood, Drought, Storm, or Extreme temperature |
-| `region_climate` | Drier or Wetter |
-| `effect` | Change in wheat-flour price |
-| `lower`, `upper` | 95% confidence interval |
-
-`data/floods_by_year.csv` has 22 rows, one per year from 2000 to 2021. It counts the region-months with a flood or storm that year, and gives the El Niño phase (El Nino, La Nina, or Neutral).
+Files ending in `_for_excel.csv` hold the same numbers laid out for Excel.
 
 ## In Excel
 

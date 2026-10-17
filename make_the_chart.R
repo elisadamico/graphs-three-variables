@@ -1,6 +1,6 @@
 # =============================================================
-# Exercise 1: Does the same disaster hit food prices the same way
-# everywhere? A three-variable bar chart, built in stages
+# Does the same disaster hit food prices the same way everywhere?
+# A three-variable bar chart, built in stages
 # =============================================================
 # Data: data/pooled_effects.csv (8 rows)
 # Each row is the average effect of a disaster on wheat-flour
@@ -74,7 +74,7 @@ p4
 # Save your figure
 # -------------------------------------------------------------
 dir.create("figures", showWarnings = FALSE)
-ggsave("figures/exercise1.png", p4, width = 7, height = 5, dpi = 300)
+ggsave("figures/my_chart.png", p4, width = 7, height = 5, dpi = 300)
 
 # Try it yourself:
 #   1. Swap x and fill: aes(x = region_climate, fill = disaster).

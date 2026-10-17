@@ -4,6 +4,8 @@ Practice for the POL10170 guest lecture on graphs for three or more variables (U
 
 **Optional.** This is not part of your assignment.
 
+The slides from the lecture are in [lecture_slides.pdf](lecture_slides.pdf).
+
 ## The data
 
 `data/pooled_effects.csv` has 8 rows. Each one is the average change in wheat-flour prices after a disaster, in drier or wetter regions.

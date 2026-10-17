@@ -1,6 +1,6 @@
 # Making the charts in Excel
 
-There are three charts to try. Each one shows three variables.
+There are three charts to try. Each one shows three variables. Finished versions are in the [answers](answers/) folder if you want to check your work.
 
 ## Chart 1. One disaster, two different results
 
@@ -22,6 +22,10 @@ Each number is the average change in wheat-flour prices after a disaster, in dri
 3. Click any Drier bar, then **Chart Design → Add Chart Element → Error Bars → More Error Bar Options**. Choose **Custom → Specify Value** and use cells **D2:D5** for both positive and negative.
 4. Do the same for the Wetter bars with cells **E2:E5**.
 5. Add a vertical axis title, such as "Effect on wheat-flour price".
+
+**Answer:** [chart1_answer.xlsx](answers/chart1_answer.xlsx), or see the picture below.
+
+![Finished chart 1](answers/chart1_answer.png)
 
 **What to look for.** Floods push prices up in drier regions but slightly down in wetter ones. If an error bar crosses zero, we cannot be confident there is any effect.
 
@@ -46,6 +50,8 @@ Each number counts how many region-months had at least one flood that year, acro
 3. Go to **Insert → Stacked Column**. (Stacked, so the empty cells do not leave gaps.)
 4. Right-click a bar, choose **Format Data Series**, and set **Gap Width** to about 30%.
 5. Add axis titles.
+
+**Answer:** [chart2_answer.xlsx](answers/chart2_answer.xlsx)
 
 **Think about it.** Do El Niño years have more floods? Is this chart enough to say El Niño *causes* floods? What else would you want to know?
 
@@ -72,5 +78,9 @@ Each row is one year. The first column is how strong El Niño was that year (abo
 3. Click one of the "All years" points, then **Chart Design → Add Chart Element → Trendline → Linear**. Right-click the line, choose **Format Trendline**, and tick **Display R-squared value on chart**.
 4. Click the "All years" points again, choose **Format Data Series → Marker → No marker**, and delete "All years" from the legend. Now you see the coloured points and one line through all of them.
 5. Add axis titles.
+
+**Answer:** [chart3_answer.xlsx](answers/chart3_answer.xlsx), or see the picture below.
+
+![Finished chart 3](answers/chart3_answer.png)
 
 **What to look for.** The line slopes up, so stronger El Niño years tend to have more floods in these regions. But the points are spread widely around the line, and there are only 22 years. This is a weak relationship. How would you describe it in one honest sentence?

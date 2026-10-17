@@ -15,6 +15,7 @@ The slides from the lecture are in [lecture_slides.pdf](lecture_slides.pdf).
 | 3. Floods vs. El Niño strength, with a fitted line | `data/floods_by_year.csv` | Excel |
 
 Files ending in `_for_excel.csv` hold the same numbers laid out for Excel.
+Finished Excel charts are in the `answers` folder.
 
 ## In Excel
 

@@ -28,6 +28,10 @@ Click the green **Code** button, then **Download ZIP**. Open the files ending in
 3. Run `install.packages("ggplot2")` in the Console.
 4. Open `make_the_chart.R` and run it one line at a time with **Ctrl + Enter** (Windows) or **Cmd + Enter** (Mac).
 
+## Want to play with an interactive visualization?
+
+[Bridging the Distance: New Insights on Geography in Conflict Mediation](https://tvancisin.github.io/elisa_damico/) presents a different study (on where peace talks take place) as an interactive web page. Click through the countries to explore the data. Research by Elisa D'Amico, web and visualizations by [Tomas Vancisin](https://github.com/tvancisin).
+
 ## Sources
 
 D'Amico, E. (2026). The price of instability: hydrological disasters, food prices, and violent conflict. *Humanities and Social Sciences Communications*. https://doi.org/10.1057/s41599-026-08590-1. Disaster data from EM-DAT (CRED, UCLouvain).

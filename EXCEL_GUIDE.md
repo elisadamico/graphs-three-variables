@@ -51,7 +51,9 @@ Each number counts how many region-months had at least one flood that year, acro
 4. Right-click a bar, choose **Format Data Series**, and set **Gap Width** to about 30%.
 5. Add axis titles.
 
-**Answer:** [chart2_answer.xlsx](answers/chart2_answer.xlsx)
+**Answer:** [chart2_answer.xlsx](answers/chart2_answer.xlsx), or see the picture below.
+
+![Finished chart 2](answers/chart2_answer.png)
 
 **Think about it.** Do El Niño years have more floods? Is this chart enough to say El Niño *causes* floods? What else would you want to know?
 

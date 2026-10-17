@@ -1,0 +1,9 @@
+disaster,region_climate,effect,lower,upper,error_bar
+Flood,Drier,12.21,0.78,23.64,11.43
+Flood,Wetter,-4.43,-9.32,0.46,4.89
+Drought,Drier,2.92,-4.5,10.34,7.42
+Drought,Wetter,12.11,6.15,18.06,5.96
+Extreme temperature,Drier,3.46,-2.21,9.13,5.67
+Extreme temperature,Wetter,2.55,-13.81,18.92,16.36
+Storm,Drier,-4.7,-11.54,2.14,6.84
+Storm,Wetter,14.98,3.67,26.29,11.31

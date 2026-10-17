@@ -70,7 +70,7 @@ p4
 # -------------------------------------------------------------
 # Stage 5: make it readable
 # -------------------------------------------------------------
-cols <- c("Drier" = "#4169E1", "Wetter" = "#FF1493")
+cols <- c("Drier" = "#00FFFF", "Wetter" = "#FF69B4")
 
 p5 <- p4 +
   scale_colour_manual(values = cols) +
@@ -80,7 +80,14 @@ p5 <- p4 +
        y = "Effect on wheat-flour price",
        colour = "Regional climate", fill = "Regional climate") +
   theme_minimal(base_family = "serif", base_size = 13) +
-  theme(legend.position = "bottom")
+  # a dark look, like the figures in the HSS paper
+  theme(plot.background  = element_rect(fill = "black", colour = NA),
+        text             = element_text(colour = "white"),
+        axis.text        = element_text(colour = "grey80"),
+        strip.text       = element_text(colour = "white"),
+        panel.grid       = element_line(colour = "grey25"),
+        panel.grid.minor = element_blank(),
+        legend.position  = "bottom")
 p5
 
 # -------------------------------------------------------------

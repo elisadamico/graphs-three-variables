@@ -49,13 +49,25 @@ p3
 # -------------------------------------------------------------
 # Stage 4: make it readable
 # -------------------------------------------------------------
-p4 <- p3 +
-  scale_fill_manual(values = c("Drier" = "#4169E1", "Wetter" = "#FF1493")) +
+p4 <- ggplot(d, aes(x = disaster, y = effect, fill = region_climate)) +
+  geom_col(position = "dodge") +
+  geom_errorbar(aes(ymin = lower, ymax = upper),
+                position = position_dodge(width = 0.9), width = 0.2,
+                colour = "white") +
+  geom_hline(yintercept = 0, colour = "white") +
+  scale_fill_manual(values = c("Drier" = "#00FFFF", "Wetter" = "#FF69B4")) +
   labs(x = NULL,
        y = "Effect on wheat-flour price",
        fill = "Regional climate") +
   theme_minimal(base_family = "serif", base_size = 13) +
-  theme(legend.position = "bottom")
+  # a dark look, like the figures in the HSS paper
+  theme(plot.background  = element_rect(fill = "black", colour = NA),
+        text             = element_text(colour = "white"),
+        axis.text        = element_text(colour = "grey80"),
+        strip.text       = element_text(colour = "white"),
+        panel.grid       = element_line(colour = "grey25"),
+        panel.grid.minor = element_blank(),
+        legend.position  = "bottom")
 p4
 
 # -------------------------------------------------------------

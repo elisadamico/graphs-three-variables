@@ -6,7 +6,7 @@ Practice for the POL10170 guest lecture on graphs for three or more variables (U
 
 The slides from the lecture are in [lecture_slides.pdf](lecture_slides.pdf).
 
-**Try it in your browser, no download needed:** [elisadamico.github.io/graphs-three-variables](https://elisadamico.github.io/graphs-three-variables/). Pick a dataset and up to three variables, like Teaching Charts.
+**Try it in your browser, no download needed:** [www.elisadamico.net/graphs-three-variables](https://www.elisadamico.net/graphs-three-variables/). Pick a dataset and up to three variables, like Teaching Charts.
 
 ## What's here
 

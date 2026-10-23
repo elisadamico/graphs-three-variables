@@ -22,11 +22,13 @@
          background: linear-gradient(90deg, var(--cyan), var(--pink)); }
   .sub { color: var(--muted); margin: 10px 0 0; font-size: 15px; }
   main { display: grid; grid-template-columns: 280px 1fr 300px; gap: 20px; padding: 16px 24px 32px; }
-  @media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+  @media (max-width: 1000px) { main { grid-template-columns: minmax(0, 1fr); } }
+  section { min-width: 0; }
   section { background: var(--panel); border-radius: 6px; padding: 16px; }
   h2 { font-size: 17px; margin: 0 0 12px; color: var(--cyan); }
   h2.pink { color: var(--pink); }
   label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 4px; }
+  option:disabled { color: #555; }
   select { width: 100%; padding: 7px; background: #000; color: var(--ink);
            border: 1px solid var(--rule); border-radius: 4px; font-size: 14px; }
   .check { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px; color: var(--ink); }
@@ -86,7 +88,14 @@
 </main>
 
 <footer>
-  Data: D'Amico (2026), <a href="https://doi.org/10.1057/s41599-026-08590-1">The price of instability</a>, <i>Humanities and Social Sciences Communications</i>; and D'Amico (2026), <a href="https://doi.org/10.1088/1748-9326/aea4c6">Regional El Niño patterns shape wheat-flour price responses to climate disasters</a>, <i>Environmental Research Letters</i>. Disaster data from EM-DAT (CRED, UCLouvain). Inspired by Teaching Charts. Files and Excel steps: <a href="https://github.com/elisadamico/graphs-three-variables">github.com/elisadamico/graphs-three-variables</a>.
+  <b>Papers.</b> D'Amico, E. (2026). <a href="https://doi.org/10.1057/s41599-026-08590-1">The price of instability: hydrological disasters, food prices, and violent conflict</a>. <i>Humanities and Social Sciences Communications</i>.
+  D'Amico, E. (2026). <a href="https://doi.org/10.1088/1748-9326/aea4c6">Regional El Niño patterns shape wheat-flour price responses to climate disasters</a>. <i>Environmental Research Letters</i> 21, 184039 (<a href="https://doi.org/10.7910/DVN/4QHFA1">replication data</a>).<br>
+  <b>Data sources.</b>
+  Disasters: <a href="https://www.emdat.be/">EM-DAT, the International Disaster Database</a> (CRED, UCLouvain).
+  Conflict: <a href="https://ucdp.uu.se/">UCDP Georeferenced Event Dataset</a> (Uppsala Conflict Data Program).
+  Food prices: <a href="https://dataviz.vam.wfp.org/">World Food Programme, Vulnerability Analysis and Mapping</a>.
+  El Niño: <a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php">NOAA Climate Prediction Center, Oceanic Niño Index</a>.<br>
+  Inspired by <a href="https://www.joselkink.net/teachingcharts/">Teaching Charts</a>. Files and Excel steps: <a href="https://github.com/elisadamico/graphs-three-variables">github.com/elisadamico/graphs-three-variables</a>.
 </footer>
 
 <script>
@@ -94,18 +103,21 @@ const DATASETS = {
   pooled: {
     label: "Disasters and food prices (average effect)",
     file: "data/pooled_effects.csv",
+    types: ["bar", "scatter"],
     preset: { type: "bar", v1: "disaster", v2: "effect", v3: "region_climate", err: true, reg: false },
-    tip: "Floods push wheat-flour prices up in drier regions but slightly down in wetter ones. If a bar's interval crosses zero, we cannot rule out no effect."
+    tip: "After floods, wheat-flour prices rose in drier regions. In wetter regions the estimate is slightly negative, but its interval crosses zero, so we cannot rule out no change."
   },
   monthly: {
     label: "Food prices month by month after a disaster",
     file: "data/price_effects_by_month.csv",
+    types: ["line", "scatter"],
     preset: { type: "line", v1: "month", v2: "effect", v3: "region_climate", err: true, reg: false, subVar: "disaster", subVal: "Flood" },
     tip: "Month 0 is the disaster. Try changing the subset to Drought or Storm. Do drier and wetter regions still move apart?"
   },
   yearly: {
     label: "Floods per year and El Niño (2000 to 2021)",
     file: "data/floods_by_year.csv",
+    types: ["bar", "line", "scatter"],
     preset: { type: "scatter", v1: "oni", v2: "floods", v3: "enso_phase", err: false, reg: true },
     tip: "The line slopes up, but the points are spread widely and there are only 22 years. How would you describe this relationship in one honest sentence?"
   }
@@ -113,17 +125,23 @@ const DATASETS = {
 
 const VARS = {
   disaster: ["Disaster type", "Flood, Drought, Storm, or Extreme temperature (EM-DAT)."],
-  region_climate: ["Regional climate", "Whether the region was in a drier or wetter state at the time, based on its El Niño pattern."],
-  effect: ["Effect on wheat-flour price", "Estimated change in wheat-flour prices after the disaster, compared with similar regions not yet hit."],
+  region_climate: ["Regional climate", "Whether, in that month, the El Niño pattern was pushing the region towards drier or wetter conditions."],
+  effect: ["Effect on wheat-flour price (% change)", "Estimated percentage change in wheat-flour prices after the disaster, compared with regions not yet hit by that kind of disaster. The 95% interval shows the uncertainty."],
   month: ["Months since disaster", "Negative numbers are months before the disaster, 0 is the month it happened."],
   year: ["Year", "Calendar year, 2000 to 2021."],
-  enso_phase: ["El Niño phase", "El Nino, La Nina, or Neutral, from NOAA's Oceanic Niño Index."],
-  oni: ["El Niño strength (ONI)", "Above 0.5 is El Niño, below -0.5 is La Niña."],
+  enso_phase: ["El Niño phase", "El Niño (index above 0.5), La Niña (below -0.5), or Neutral, from NOAA's Oceanic Niño Index."],
+  oni: ["El Niño strength (ONI)", "The Oceanic Niño Index value used for each year in the paper. Above 0.5 is El Niño, below -0.5 is La Niña."],
   floods: ["Region-months with a flood", "How many region-months had at least one flood that year, across 410 regions in 62 countries."],
   storms: ["Region-months with a storm", "How many region-months had at least one storm that year, across the same regions."]
 };
 const HIDDEN = ["lower", "upper", "error_bar"];
+// cat = groups, time = ordered time, num = a quantity
+const KIND = { disaster: "cat", region_climate: "cat", enso_phase: "cat",
+               month: "time", year: "time",
+               effect: "num", floods: "num", storms: "num", oni: "num" };
+const kind = v => KIND[v] || (numeric[v] ? "num" : "cat");
 const COLOURS = { "Drier": "#00ffff", "Wetter": "#ff69b4", "El Nino": "#00ffff", "La Nina": "#ff69b4", "Neutral": "#888888" };
+const DISPLAY = { "El Nino": "El Niño", "La Nina": "La Niña" };
 const FALLBACK = ["#00ffff", "#ff69b4", "#bbbbbb", "#ffd166", "#9b7bff", "#7bd389"];
 
 const $ = id => document.getElementById(id);
@@ -146,6 +164,44 @@ function fill(sel, opts, value) {
   if (value !== undefined && opts.some(o => o[0] === value)) sel.value = value;
 }
 
+// Grey out options that do not make sense; if the current one is greyed out, move to the first valid one
+function allow(sel, ok) {
+  [...sel.options].forEach(o => { o.disabled = !ok(o.value); });
+  if (sel.selectedOptions[0] && sel.selectedOptions[0].disabled) {
+    const first = [...sel.options].find(o => !o.disabled);
+    if (first) sel.value = first.value;
+  }
+}
+
+// true if knowing a value of x tells you the value of v (e.g. year -> El Nino phase)
+function determinedBy(v, x) {
+  const m = {};
+  return rows.every(r => (m[r[x]] === undefined ? (m[r[x]] = r[v], true) : m[r[x]] === r[v]));
+}
+
+function refresh() {
+  const ds = DATASETS[$("dataset").value];
+  allow($("type"), t => ds.types.includes(t));
+  const type = $("type").value, sub = $("subVar").value;
+  const results = "lower" in rows[0];
+  allow($("v1"), v => {
+    if (v === sub) return false;
+    if (type === "bar") return kind(v) !== "num";
+    if (type === "line") return kind(v) === "time";
+    // scatter: a category on x only for estimates (a dot plot); a number only if another number is left for y
+    if (kind(v) === "cat") return results;
+    return cols.some(c => kind(c) === "num" && c !== v);
+  });
+  const x = $("v1").value;
+  allow($("v2"), v => kind(v) === "num" && v !== x);
+  // on a line chart, colour or filter must not split time into pieces (e.g. year -> phase)
+  const splitsTime = v => type === "line" && determinedBy(v, x);
+  allow($("v3"), v => v === "" || (kind(v) === "cat" && v !== x && v !== sub && !splitsTime(v)));
+  const g = $("v3").value;
+  allow($("subVar"), v => v === "" || (kind(v) === "cat" && v !== x && v !== g && !splitsTime(v)));
+  if ($("subVal").dataset.for !== $("subVar").value) fillSubVal();
+}
+
 async function loadDataset(key, usePreset) {
   const ds = DATASETS[key];
   const text = await (await fetch(ds.file)).text();
@@ -157,17 +213,17 @@ async function loadDataset(key, usePreset) {
   const p = usePreset ? ds.preset : {};
   fill($("v1"), varOpts, p.v1 || cols[0]);
   fill($("v2"), varOpts, p.v2 || cols.find(isNum));
-  fill($("v3"), [["", "(none)"]].concat(varOpts.filter(([c]) => !isNum(c))), p.v3 || "");
-  const catCols = cols.filter(c => !isNum(c));
-  fill($("subVar"), [["", "(all rows)"]].concat(catCols.map(c => [c, label(c)])), p.subVar || "");
+  fill($("v3"), [["", "(none)"]].concat(varOpts), p.v3 || "");
+  fill($("subVar"), [["", "(all rows)"]].concat(varOpts), p.subVar || "");
   fillSubVal(p.subVal);
   if (usePreset) { $("type").value = p.type; $("err").checked = !!p.err; $("reg").checked = !!p.reg; }
-  $("tip").textContent = ds.tip;
+  refresh();
   draw();
 }
 
 function fillSubVal(value) {
   const c = $("subVar").value;
+  $("subVal").dataset.for = c;
   if (!c) { fill($("subVal"), [["", "—"]]); $("subVal").disabled = true; return; }
   const vals = [...new Set(rows.map(r => r[c]))];
   fill($("subVal"), vals.map(v => [v, v]), value || vals[0]);
@@ -179,12 +235,31 @@ function draw() {
   const hasErr = "lower" in rows[0] && y === "effect";
   $("errWrap").classList.toggle("disabled", !hasErr);
   $("err").disabled = !hasErr;
-  const canReg = type === "scatter" && isNum(x) && isNum(y);
+  if (!hasErr) $("err").checked = false;
+  const canReg = type === "scatter" && kind(x) !== "cat" && kind(y) === "num";
   $("regWrap").classList.toggle("disabled", !canReg);
   $("reg").disabled = !canReg;
+  if (!canReg) $("reg").checked = false;
 
   let data = rows;
   if ($("subVar").value) data = data.filter(r => r[$("subVar").value] === $("subVal").value);
+  if (type !== "scatter" || kind(x) !== "num") {
+    const seen = new Set(), clash = data.some(r => {
+      const k = r[x] + "|" + (g ? r[g] : "");
+      if (seen.has(k)) return true; seen.add(k); return false;
+    });
+    if (clash) {
+      const others = cols.filter(c => kind(c) === "cat" && c !== x && c !== g).map(c => label(c).toLowerCase());
+      Plotly.purge("chart");
+      $("chart").dataset.blocked = "1";
+      $("chart").innerHTML = `<div style="padding:60px 30px;color:#e8e8e8;line-height:1.6">
+        <div style="color:#ff69b4;font-weight:600;margin-bottom:8px">This would mix different things together.</div>
+        Each ${type} would combine several rows${others.length ? " (for example, different " + others.join(" or ") + ")" : ""}.
+        Use <b>Only show rows where</b> to pick one, or choose it as <b>Variable 3 (colour)</b>.</div>`;
+      $("info").innerHTML = "";
+      return;
+    }
+  }
   const groups = g ? [...new Set(data.map(r => r[g]))] : [null];
   const traces = [];
 
@@ -192,21 +267,28 @@ function draw() {
     let d = grp === null ? data : data.filter(r => r[g] === grp);
     if (type === "line" && isNum(x)) d = [...d].sort((a, b) => a[x] - b[x]);
     const col = COLOURS[grp] || FALLBACK[i % FALLBACK.length];
+    if (type === "line") {
+      // put an empty point in any missing month or year so the line does not jump across it
+      const have = new Set(d.map(r => +r[x])), all = data.map(r => +r[x]);
+      const lo = Math.min(...all), hi = Math.max(...all), filled = [];
+      for (let v = lo; v <= hi; v++) filled.push(have.has(v) ? d.find(r => +r[x] === v) : { [x]: v, [y]: null, lower: null, upper: null });
+      d = filled;
+    }
     const xs = d.map(r => isNum(x) ? +r[x] : r[x]);
-    const ys = d.map(r => +r[y]);
-    const name = grp === null ? label(y) : grp;
+    const ys = d.map(r => r[y] === null ? null : +r[y]);
+    const name = grp === null ? label(y) : (DISPLAY[grp] || grp);
     const showErr = hasErr && $("err").checked;
 
     if (type === "line" && showErr) {
-      traces.push({ x: xs, y: d.map(r => +r.upper), mode: "lines", line: { width: 0 },
+      traces.push({ x: xs, y: d.map(r => r.upper === null ? null : +r.upper), mode: "lines", line: { width: 0 },
                     showlegend: false, hoverinfo: "skip", legendgroup: name });
-      traces.push({ x: xs, y: d.map(r => +r.lower), mode: "lines", line: { width: 0 }, fill: "tonexty",
+      traces.push({ x: xs, y: d.map(r => r.lower === null ? null : +r.lower), mode: "lines", line: { width: 0 }, fill: "tonexty",
                     fillcolor: hexA(col, 0.18), showlegend: false, hoverinfo: "skip", legendgroup: name });
     }
     const t = { x: xs, y: ys, name, legendgroup: name };
     if (type === "bar") { t.type = "bar"; t.marker = { color: col }; }
     else { t.type = "scatter"; t.mode = type === "line" ? "lines+markers" : "markers";
-           t.marker = { color: col, size: type === "scatter" ? 11 : 6 }; t.line = { color: col, width: 2.5 }; }
+           t.marker = { color: col, size: type === "scatter" ? 11 : 6 }; t.line = { color: col, width: 2.5 }; t.connectgaps = false; }
     if (showErr && type !== "line") {
       t.error_y = { type: "data", symmetric: false, array: d.map(r => r.upper - r.effect),
                     arrayminus: d.map(r => r.effect - r.lower), color: "#ffffff", thickness: 1.5, width: 5 };
@@ -226,20 +308,28 @@ function draw() {
                   name: `Regression line (R² = ${r2.toFixed(2)})` });
   }
 
+  const oneGroupPerX = g && new Set(data.map(r => r[x])).size === data.length;
   const zeroLine = y === "effect";
   const shapes = [];
   if (zeroLine) shapes.push({ type: "line", xref: "paper", x0: 0, x1: 1, y0: 0, y1: 0, line: { color: "#666", dash: "dash" } });
   if (x === "month") shapes.push({ type: "line", yref: "paper", y0: 0, y1: 1, x0: 0, x1: 0, line: { color: "#666", dash: "dash" } });
 
+  if ($("chart").dataset.blocked) { $("chart").innerHTML = ""; delete $("chart").dataset.blocked; }
+  const narrow = $("chart").clientWidth < 600;
   Plotly.react("chart", traces, {
     paper_bgcolor: "#141414", plot_bgcolor: "#141414",
     font: { color: "#e8e8e8", family: "Avenir Next, Segoe UI, Helvetica, Arial, sans-serif", size: 13 },
-    title: { text: `${label(y)} by ${label(x)}${g ? ", coloured by " + label(g) : ""}`, font: { size: 15 } },
+    title: { text: `${label(y)} by ${label(x)}${g ? (narrow ? "<br>" : ", ") + "coloured by " + label(g) : ""}${$("subVar").value ? " (" + $("subVal").value + " only)" : ""}`, font: { size: narrow ? 12 : 15 } },
     xaxis: { title: label(x), gridcolor: "#2a2a2a", zeroline: false },
     yaxis: { title: label(y), gridcolor: "#2a2a2a", zeroline: false },
-    barmode: "group", legend: { orientation: "h", y: -0.2 }, margin: { t: 50, r: 20, l: 60, b: 80 }, shapes
+    barmode: oneGroupPerX ? "stack" : "group", legend: { orientation: "h", y: -0.2 }, margin: { t: 50, r: 20, l: 60, b: 80 }, shapes
   }, { responsive: true, displaylogo: false });
 
+  const ds = DATASETS[$("dataset").value], p = ds.preset;
+  const atPreset = type === p.type && x === p.v1 && y === p.v2 && g === p.v3 &&
+    $("subVar").value === (p.subVar || "") && (!p.subVar || $("subVal").value === p.subVal);
+  $("tip").textContent = atPreset ? ds.tip
+    : "Ask yourself: what job does each variable have, and does this chart answer a question you care about?";
   $("info").innerHTML = [["Variable 1", x], ["Variable 2", y], ["Variable 3", g]].filter(([, v]) => v)
     .map(([k, v]) => `<h3>${k}: ${label(v)}</h3><p>${VARS[v] ? VARS[v][1] : ""}</p>`).join("");
 }
@@ -254,8 +344,8 @@ const start = new URLSearchParams(location.search).get("d");
 const first = DATASETS[start] ? start : "pooled";
 fill($("dataset"), Object.entries(DATASETS).map(([k, d]) => [k, d.label]), first);
 $("dataset").addEventListener("change", e => loadDataset(e.target.value, true));
-["type", "v1", "v2", "v3", "err", "reg", "subVal"].forEach(id => $(id).addEventListener("change", draw));
-$("subVar").addEventListener("change", () => { fillSubVal(); draw(); });
+["type", "v1", "v2", "v3", "subVar"].forEach(id => $(id).addEventListener("change", () => { refresh(); draw(); }));
+["err", "reg", "subVal"].forEach(id => $(id).addEventListener("change", draw));
 loadDataset(first, true);
 </script>
 </body>

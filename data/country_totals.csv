@@ -1,0 +1,62 @@
+country,iso3,region,floods,storms,battle_events,battle_deaths
+Afghanistan,AFG,"Middle East, North Africa, Afghanistan & Pakistan",267,35,37697,245877
+Algeria,DZA,"Middle East, North Africa, Afghanistan & Pakistan",8,2,25,136
+Angola,AGO,Sub-Saharan Africa,40,0,13,245
+Azerbaijan,AZE,Europe & Central Asia,,,432,8138
+Bangladesh,BGD,South Asia,110,124,218,302
+Benin,BEN,Sub-Saharan Africa,38,1,7,12
+Burkina Faso,BFA,Sub-Saharan Africa,81,0,0,0
+Cameroon,CMR,Sub-Saharan Africa,12,0,825,5216
+Central African Republic,CAF,Sub-Saharan Africa,18,20,290,1965
+Chad,TCD,Sub-Saharan Africa,,,154,5193
+Congo,COG,Sub-Saharan Africa,16,0,13,125
+Cote d'Ivoire,CIV,Sub-Saharan Africa,1,0,0,0
+Democratic Republic of the Congo,COD,Sub-Saharan Africa,33,4,1682,18592
+Djibouti,DJI,"Middle East, North Africa, Afghanistan & Pakistan",4,0,0,0
+Egypt,EGY,"Middle East, North Africa, Afghanistan & Pakistan",,,505,3467
+El Salvador,SLV,Latin America & Caribbean,,,0,0
+Eritrea,ERI,Sub-Saharan Africa,0,0,6,49244
+Ethiopia,ETH,Sub-Saharan Africa,52,0,1605,147120
+Gambia,GMB,Sub-Saharan Africa,32,13,0,0
+Georgia,GEO,Europe & Central Asia,2,0,0,0
+Guatemala,GTM,Latin America & Caribbean,,,0,0
+Guinea,GIN,Sub-Saharan Africa,26,0,2,4
+Guinea-Bissau,GNB,Sub-Saharan Africa,8,4,2,0
+Haiti,HTI,Latin America & Caribbean,71,93,19,207
+Indonesia,IDN,East Asia & Pacific,,,958,3240
+Iran  (Islamic Republic of),IRN,"Middle East, North Africa, Afghanistan & Pakistan",14,3,12,214
+Iraq,IRQ,"Middle East, North Africa, Afghanistan & Pakistan",,,6377,75702
+Jordan,JOR,"Middle East, North Africa, Afghanistan & Pakistan",,,6,43
+Kenya,KEN,Sub-Saharan Africa,40,0,210,553
+Kyrgyzstan,KGZ,Europe & Central Asia,,,26,196
+Lao People's Democratic Republic,LAO,East Asia & Pacific,72,15,1,5
+Lebanon,LBN,"Middle East, North Africa, Afghanistan & Pakistan",,,323,1563
+Lesotho,LSO,Sub-Saharan Africa,8,7,0,0
+Liberia,LBR,Sub-Saharan Africa,9,1,74,2677
+Libya,LBY,"Middle East, North Africa, Afghanistan & Pakistan",,,736,9077
+Madagascar,MDG,Sub-Saharan Africa,20,131,0,0
+Mali,MLI,Sub-Saharan Africa,74,0,804,4669
+Mauritania,MRT,Sub-Saharan Africa,40,2,7,25
+Moldova Republic of,MDA,Europe & Central Asia,3,1,0,0
+Mozambique,MOZ,Sub-Saharan Africa,,,336,2286
+Nepal,NPL,South Asia,62,1,0,0
+Nicaragua,NIC,Latin America & Caribbean,,,0,0
+Niger,NER,Sub-Saharan Africa,107,1,201,2358
+Nigeria,NGA,Sub-Saharan Africa,95,9,2416,22351
+Pakistan,PAK,"Middle East, North Africa, Afghanistan & Pakistan",69,17,920,6029
+Peru,PER,Latin America & Caribbean,12,1,1,10
+Philippines,PHL,East Asia & Pacific,29,171,39,98
+Rwanda,RWA,Sub-Saharan Africa,12,0,0,0
+Senegal,SEN,Sub-Saharan Africa,58,1,84,234
+Sierra Leone,SLE,Sub-Saharan Africa,11,0,48,432
+Somalia,SOM,Sub-Saharan Africa,81,11,4541,27304
+South Sudan,SSD,Sub-Saharan Africa,,,589,13911
+Sri Lanka,LKA,South Asia,,,2348,26639
+Swaziland,SWZ,Sub-Saharan Africa,,,0,0
+Syrian Arab Republic,SYR,"Middle East, North Africa, Afghanistan & Pakistan",4,15,52597,274761
+Tajikistan,TJK,Europe & Central Asia,,,51,329
+Togo,TGO,Sub-Saharan Africa,13,0,0,0
+Turkey,TUR,Europe & Central Asia,,,2232,8187
+Ukraine,UKR,Europe & Central Asia,,,3561,8886
+United Republic of Tanzania,TZA,Sub-Saharan Africa,99,16,21,442
+Zimbabwe,ZWE,Sub-Saharan Africa,35,28,0,0
